@@ -76,7 +76,7 @@ export function ContactSection() {
         <div className="relative min-h-80 overflow-hidden rounded-2xl border border-border">
           <Image
             src="/images/facility.png"
-            alt="Pabellón deportivo del C.D SMILO en Granada"
+            alt="IES Padre Suárez, Granada"
             fill
             className="object-cover"
           />

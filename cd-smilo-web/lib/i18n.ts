@@ -11,8 +11,8 @@ export const dictionary = {
     },
     hero: {
       location: 'Granada · España',
-      titleLine1: 'Más que un club.',
-      titleLine2: 'Una familia.',
+      titleLine1: 'Crecemos.',
+      titleLine2: 'Junt@s.',
       subtitle:
         'Baloncesto y voleibol para todas las edades, desde los 7 años hasta senior. Formamos deportistas y personas en el corazón de Granada.',
       ctaJoin: 'Únete al club',
@@ -24,7 +24,7 @@ export const dictionary = {
     club: {
       tag: 'El Club',
       title: 'Formando campeones dentro y fuera de la pista',
-      p1: 'El C.D SMILO nace en Granada con una misión clara: acercar el baloncesto y el voleibol a todas las edades, desde los más pequeños de 7 años hasta nuestros equipos senior.',
+      p1: 'El C.D Smilo nace en Granada con una misión clara: acercar el baloncesto y el voleibol a todas las edades, desde los más pequeños de 7 años hasta nuestros equipos senior.',
       p2: 'Creemos en el esfuerzo, el respeto y el trabajo en equipo. Cada temporada, cientos de deportistas crecen con nosotros en un ambiente sano, competitivo y familiar.',
       values: [
         { title: 'Esfuerzo', text: 'Damos lo mejor en cada entrenamiento y cada partido.' },
@@ -35,7 +35,7 @@ export const dictionary = {
     },
     teams: {
       tag: 'Nuestros Equipos',
-      title: 'Un equipo para cada edad',
+      title: 'Un equipo para cada categoría',
       subtitle:
         'Contamos con equipos masculinos y femeninos en todas las categorías, para baloncesto y voleibol.',
       basketball: 'Baloncesto',
@@ -54,7 +54,7 @@ export const dictionary = {
       title: 'Ponte en contacto con nosotros',
       subtitle: 'Estamos en Granada. Ven a conocernos o escríbenos, estaremos encantados de ayudarte.',
       addressLabel: 'Dirección',
-      address: 'Pabellón Municipal SMILO, Av. del Deporte 12, 18012 Granada, España',
+      address: 'IES Padre Suárez, C. Gran Vía de Colón, 61, Centro, 18001 Granada, España',
       phoneLabel: 'Teléfono',
       emailLabel: 'Correo',
       hoursLabel: 'Horario de oficina',
@@ -84,7 +84,7 @@ export const dictionary = {
       badgeClosed: 'Inscripción cerrada',
       openTitle: 'Inscripción de temporada',
       openSubtitle:
-        'Enhorabuena por superar las pruebas. Completa tus datos para formalizar tu plaza en el equipo.',
+        'Completa tus datos para formalizar tu plaza en nuestro club.',
       closedTitle: 'Las inscripciones están cerradas',
       closedText:
         'La inscripción se abre al inicio de temporada, tras las pruebas de acceso. Si has superado las pruebas, recibirás el enlace para inscribirte. Mientras tanto, escríbenos para conocer las fechas de las próximas pruebas.',
@@ -95,7 +95,7 @@ export const dictionary = {
       contactCta: 'Contactar sobre las pruebas',
     },
     footer: {
-      tagline: 'Baloncesto y voleibol en Granada. Todas las edades, una sola familia.',
+      tagline: 'Baloncesto y voleibol en Granada. Crecemos junt@s.',
       rights: 'Todos los derechos reservados.',
       nav: 'Navegación',
       contact: 'Contacto',
@@ -154,7 +154,7 @@ export const dictionary = {
       title: 'Get in touch with us',
       subtitle: "We're in Granada. Come and meet us or write to us, we'll be glad to help.",
       addressLabel: 'Address',
-      address: 'Pabellón Municipal SMILO, Av. del Deporte 12, 18012 Granada, Spain',
+      address: 'IES Padre Suárez, C. Gran Vía de Colón, 61, Centro, 18001 Granada, Spain',
       phoneLabel: 'Phone',
       emailLabel: 'Email',
       hoursLabel: 'Office hours',

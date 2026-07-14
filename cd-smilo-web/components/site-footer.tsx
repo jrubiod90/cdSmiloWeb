@@ -60,7 +60,7 @@ export function SiteFooter() {
               {t.footer.contact}
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
-              <li>Av. del Deporte 12, 18012 Granada</li>
+              <li>C. Gran Vía de Colón, 61, Centro, 18001 Granada, España</li>
               <li>+34 958 123 456</li>
               <li>info@cdsmilo.es</li>
             </ul>

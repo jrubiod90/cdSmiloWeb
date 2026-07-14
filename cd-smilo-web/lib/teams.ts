@@ -33,8 +33,8 @@ export type Team = {
 // Coach names indexed per category (benjamín → senior)
 const coaches: Record<Sport, Record<Gender, string[]>> = {
   baloncesto: {
-    male: ['Javier Ruiz', 'Marcos León', 'Pablo Ortega', 'Diego Fernández', 'Álvaro Molina', 'Sergio Cano'],
-    female: ['Laura Vega', 'Marta Jiménez', 'Cristina Delgado', 'Nuria Peña', 'Elena Torres', 'Rocío Navas'],
+    male: ['Sara Bretón', 'Jorge Rubio', 'Coque', 'Javier Alegre', 'Ricardo Cosano', 'Curro'],
+    female: ['Lara Rojas', 'Sara Bretón', 'Mariano', 'Arturo', 'Jorge Rubio', 'Coque'],
   },
   voleibol: {
     male: ['Carlos Herrera', 'Iván Salas', 'Adrián Reyes', 'Rubén Castro', 'Hugo Márquez', 'Daniel Prieto'],

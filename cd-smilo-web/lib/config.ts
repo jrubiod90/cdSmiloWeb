@@ -9,4 +9,4 @@
  *   NEXT_PUBLIC_SEASON_OPEN=true
  */
 export const seasonOpen: boolean =
-  process.env.NEXT_PUBLIC_SEASON_OPEN === 'true' || false
+  process.env.NEXT_PUBLIC_SEASON_OPEN !== 'false'
