@@ -1,12 +1,11 @@
-const isGithubPages = process.env.GITHUB_PAGES === 'true'
-const repoName = 'cdSmiloWeb'
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  basePath: isGithubPages ? `/${repoName}` : '',
-  assetPrefix: isGithubPages ? `/${repoName}/` : '',
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : '',
   images: {
     unoptimized: true,
   },

@@ -10,3 +10,11 @@
  */
 export const seasonOpen: boolean =
   process.env.NEXT_PUBLIC_SEASON_OPEN !== 'false'
+
+/**
+ * Base path the site is served under (e.g. '/cdSmiloWeb' on GitHub Pages, '' locally
+ * and on Vercel). Must match `basePath` in next.config.mjs. `next/image` doesn't
+ * prepend it automatically when `images.unoptimized` is set, so any hand-built image
+ * src under /public needs `${basePath}/...`.
+ */
+export const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''

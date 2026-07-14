@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
+import { basePath } from '@/lib/config'
 import { cn } from '@/lib/utils'
 
 export function SiteHeader() {
@@ -39,7 +40,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image
-            src="/images/crest.png"
+            src={`${basePath}/images/crest.png`}
             alt="Escudo C.D SMILO"
             width={44}
             height={44}

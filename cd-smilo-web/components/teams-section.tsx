@@ -5,12 +5,13 @@ import Image from 'next/image'
 import { ImageIcon, UserRound } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 import { TeamCarousel } from '@/components/team-carousel'
+import { basePath } from '@/lib/config'
 import { categories, teamsBySport, type Gender, type Sport, type Team } from '@/lib/teams'
 import { cn } from '@/lib/utils'
 
 const coachImages: Record<Gender, string> = {
-  male: '/images/coach-1.png',
-  female: '/images/coach-2.png',
+  male: `${basePath}/images/coach-1.png`,
+  female: `${basePath}/images/coach-2.png`,
 }
 
 export function TeamsSection() {

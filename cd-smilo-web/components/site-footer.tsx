@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useLanguage } from '@/components/language-provider'
+import { basePath } from '@/lib/config'
 
 export function SiteFooter() {
   const { t } = useLanguage()
@@ -22,7 +23,7 @@ export function SiteFooter() {
           <div>
             <div className="flex items-center gap-3">
               <Image
-                src="/images/crest.png"
+                src={`${basePath}/images/crest.png`}
                 alt="Escudo C.D SMILO"
                 width={48}
                 height={48}

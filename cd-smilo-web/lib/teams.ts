@@ -1,3 +1,5 @@
+import { basePath } from '@/lib/config'
+
 export type Sport = 'baloncesto' | 'voleibol'
 export type Gender = 'male' | 'female'
 
@@ -43,8 +45,8 @@ const coaches: Record<Sport, Record<Gender, string[]>> = {
 }
 
 const images: Record<Sport, string> = {
-  baloncesto: '/images/basketball.png',
-  voleibol: '/images/volleyball.png',
+  baloncesto: `${basePath}/images/basketball.png`,
+  voleibol: `${basePath}/images/volleyball.png`,
 }
 
 /**
@@ -52,10 +54,10 @@ const images: Record<Sport, string> = {
  *
  * These reuse existing images so the carousel renders immediately. To use real
  * photos, drop files in `public/images/teams/` and return their paths here, e.g.
- *   [`/images/teams/${sport}-${categoryId}-${gender}-1.jpg`, ...]
+ *   [`${basePath}/images/teams/${sport}-${categoryId}-${gender}-1.jpg`, ...]
  */
 function buildPhotos(sport: Sport): string[] {
-  return [images[sport], '/images/team.png', '/images/facility.png']
+  return [images[sport], `${basePath}/images/team.png`, `${basePath}/images/facility.png`]
 }
 
 function buildTeams(): Team[] {

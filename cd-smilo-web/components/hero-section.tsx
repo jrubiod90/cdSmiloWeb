@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, MapPin } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
+import { basePath } from '@/lib/config'
 import { teams } from '@/lib/teams'
 
 export function HeroSection() {
@@ -18,7 +19,7 @@ export function HeroSection() {
   return (
     <section id="inicio" className="relative flex min-h-screen items-center overflow-hidden">
       <Image
-        src="/images/hero.png"
+        src={`${basePath}/images/hero.png`}
         alt=""
         fill
         priority

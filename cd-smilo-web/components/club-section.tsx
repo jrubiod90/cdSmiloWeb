@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { Dumbbell, HeartHandshake, Users, GraduationCap } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
+import { basePath } from '@/lib/config'
 
 const icons = [Dumbbell, HeartHandshake, Users, GraduationCap]
 
@@ -15,7 +16,7 @@ export function ClubSection() {
         <div className="relative">
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
             <Image
-              src="/images/team.png"
+              src={`${basePath}/images/team.png`}
               alt="Equipo del C.D SMILO"
               fill
               className="object-cover"

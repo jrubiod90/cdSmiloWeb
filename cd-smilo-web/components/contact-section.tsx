@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
+import { basePath } from '@/lib/config'
 
 const socials = [
   { label: 'Instagram', href: 'https://instagram.com' },
@@ -75,7 +76,7 @@ export function ContactSection() {
 
         <div className="relative min-h-80 overflow-hidden rounded-2xl border border-border">
           <Image
-            src="/images/facility.png"
+            src={`${basePath}/images/facility.png`}
             alt="IES Padre Suárez, Granada"
             fill
             className="object-cover"
