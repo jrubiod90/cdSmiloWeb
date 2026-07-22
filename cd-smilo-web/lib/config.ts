@@ -18,3 +18,17 @@ export const seasonOpen: boolean =
  * src under /public needs `${basePath}/...`.
  */
 export const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
+/**
+ * URL of the Google Apps Script web app that receives the registration form,
+ * stores the uploaded documents in the club's Drive and appends a row to the
+ * responses spreadsheet. See `docs/registration-backend.md` for how to deploy it.
+ *
+ * Set it (without touching code) via:
+ *   NEXT_PUBLIC_REGISTRATION_ENDPOINT=https://script.google.com/macros/s/XXXX/exec
+ *
+ * When empty, the form runs in demo mode: it validates and shows the success
+ * screen but does NOT send anything, so you can preview it before wiring Drive.
+ */
+export const registrationEndpoint =
+  process.env.NEXT_PUBLIC_REGISTRATION_ENDPOINT || ''

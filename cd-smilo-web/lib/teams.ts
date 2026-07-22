@@ -1,30 +1,48 @@
 import { basePath } from '@/lib/config'
 
 export type Sport = 'baloncesto' | 'voleibol'
-export type Gender = 'male' | 'female'
+export type Gender = 'female' | 'male' | 'mixed'
 
 export type Category = {
   id: string
   name: string
-  ageEs: string
-  ageEn: string
+  /** Birth-year range that defines the category, e.g. "2015 – 2016". */
+  yearsEs: string
+  yearsEn: string
+  /** Which team(s) exist for this category, female-first. */
+  genders: Gender[]
 }
 
-export const categories: Category[] = [
-  { id: 'benjamin', name: 'Benjamín', ageEs: '7 – 8 años', ageEn: 'Ages 7 – 8' },
-  { id: 'alevin', name: 'Alevín', ageEs: '9 – 10 años', ageEn: 'Ages 9 – 10' },
-  { id: 'infantil', name: 'Infantil', ageEs: '11 – 12 años', ageEn: 'Ages 11 – 12' },
-  { id: 'cadete', name: 'Cadete', ageEs: '13 – 14 años', ageEn: 'Ages 13 – 14' },
-  { id: 'junior', name: 'Junior', ageEs: '15 – 17 años', ageEn: 'Ages 15 – 17' },
-  { id: 'senior', name: 'Senior', ageEs: '+18 años', ageEn: 'Ages 18+' },
+// Baloncesto: benjamín (7-8 años) hasta senior.
+export const basketballCategories: Category[] = [
+  { id: 'benjamin', name: 'Benjamín', yearsEs: '2017 – 2019', yearsEn: 'Born 2017 – 2019', genders: ['mixed'] },
+  { id: 'alevin', name: 'Alevín', yearsEs: '2015 – 2016', yearsEn: 'Born 2015 – 2016', genders: ['female', 'male'] },
+  { id: 'infantil', name: 'Infantil', yearsEs: '2013 – 2014', yearsEn: 'Born 2013 – 2014', genders: ['female', 'male'] },
+  { id: 'cadete', name: 'Cadete', yearsEs: '2011 – 2012', yearsEn: 'Born 2011 – 2012', genders: ['female', 'male'] },
+  { id: 'junior', name: 'Junior', yearsEs: '2009 – 2010', yearsEn: 'Born 2009 – 2010', genders: ['female', 'male'] },
+  { id: 'senior', name: 'Senior', yearsEs: 'Antes de 2008', yearsEn: 'Born 2008 or earlier', genders: ['female', 'male'] },
 ]
 
+// Voleibol: infantil (12-13 años) hasta senior.
+export const volleyballCategories: Category[] = [
+  { id: 'infantil', name: 'Infantil', yearsEs: '2013 – 2014', yearsEn: 'Born 2013 – 2014', genders: ['female'] },
+  { id: 'cadete', name: 'Cadete', yearsEs: '2011 – 2012', yearsEn: 'Born 2011 – 2012', genders: ['female', 'mixed'] },
+  { id: 'juvenil', name: 'Juvenil', yearsEs: '2008 – 2010', yearsEn: 'Born 2008 – 2010', genders: ['female', 'mixed'] },
+  { id: 'senior', name: 'Senior', yearsEs: 'Antes de 2007', yearsEn: 'Born 2007 or earlier', genders: ['female', 'male'] },
+]
+
+export const categoriesBySport: Record<Sport, Category[]> = {
+  baloncesto: basketballCategories,
+  voleibol: volleyballCategories,
+}
+
 export type Team = {
-  /** Stable unique id, e.g. "baloncesto-benjamin-male". */
+  /** Stable unique id, e.g. "baloncesto-benjamin-mixed". */
   id: string
   sport: Sport
   categoryId: string
   gender: Gender
+  /** Empty until the club confirms and announces the coach. */
   coach: string
   /** Cover image shown on the team card. */
   image: string
@@ -32,16 +50,10 @@ export type Team = {
   photos: string[]
 }
 
-// Coach names indexed per category (benjamín → senior)
-const coaches: Record<Sport, Record<Gender, string[]>> = {
-  baloncesto: {
-    male: ['Sara Bretón', 'Jorge Rubio', 'Coque', 'Javier Alegre', 'Ricardo Cosano', 'Curro'],
-    female: ['Lara Rojas', 'Sara Bretón', 'Mariano', 'Arturo', 'Jorge Rubio', 'Coque'],
-  },
-  voleibol: {
-    male: ['Carlos Herrera', 'Iván Salas', 'Adrián Reyes', 'Rubén Castro', 'Hugo Márquez', 'Daniel Prieto'],
-    female: ['Sara Campos', 'Lucía Romero', 'Andrea Gil', 'Paula Serrano', 'Irene Ramos', 'Beatriz Luna'],
-  },
+// Only the coaches confirmed by the club so far; the rest stay blank until announced.
+const coaches: Record<string, string> = {
+  'baloncesto-senior-female': 'Coque Florido',
+  'baloncesto-senior-male': 'Miguel Galdeano',
 }
 
 const images: Record<Sport, string> = {
@@ -62,22 +74,22 @@ function buildPhotos(sport: Sport): string[] {
 
 function buildTeams(): Team[] {
   const sports: Sport[] = ['baloncesto', 'voleibol']
-  const genders: Gender[] = ['male', 'female']
   const teams: Team[] = []
 
   for (const sport of sports) {
-    for (const gender of genders) {
-      categories.forEach((cat, index) => {
+    for (const category of categoriesBySport[sport]) {
+      for (const gender of category.genders) {
+        const id = `${sport}-${category.id}-${gender}`
         teams.push({
-          id: `${sport}-${cat.id}-${gender}`,
+          id,
           sport,
-          categoryId: cat.id,
+          categoryId: category.id,
           gender,
-          coach: coaches[sport][gender][index],
+          coach: coaches[id] ?? '',
           image: images[sport],
           photos: buildPhotos(sport),
         })
-      })
+      }
     }
   }
   return teams

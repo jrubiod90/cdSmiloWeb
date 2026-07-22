@@ -23,7 +23,7 @@ export function ClubSection() {
             />
           </div>
           <div className="absolute -bottom-6 -right-4 hidden rounded-xl border border-border bg-card p-5 shadow-xl sm:block">
-            <p className="font-display text-3xl font-bold text-primary">2010</p>
+            <p className="font-display text-3xl font-bold text-primary">2001</p>
             <p className="text-xs uppercase tracking-widest text-muted-foreground">Granada</p>
           </div>
         </div>

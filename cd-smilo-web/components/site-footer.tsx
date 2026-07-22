@@ -12,6 +12,7 @@ export function SiteFooter() {
     { href: '/#inicio', label: t.nav.home },
     { href: '/#club', label: t.nav.club },
     { href: '/#equipos', label: t.nav.teams },
+    { href: '/#sedes', label: t.nav.venues },
     { href: '/#contacto', label: t.nav.contact },
     { href: '/inscripcion', label: t.nav.join },
   ]
@@ -61,9 +62,9 @@ export function SiteFooter() {
               {t.footer.contact}
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
-              <li>C. Gran Vía de Colón, 61, Centro, 18001 Granada, España</li>
-              <li>+34 958 123 456</li>
-              <li>info@cdsmilo.es</li>
+              <li>{t.contact.address}</li>
+              <li>{t.contact.phone}</li>
+              <li>{t.contact.email}</li>
             </ul>
           </div>
         </div>

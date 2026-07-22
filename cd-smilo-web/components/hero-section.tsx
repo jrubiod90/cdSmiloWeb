@@ -13,7 +13,7 @@ export function HeroSection() {
   const stats = [
     { value: `${teams.length}`, label: t.hero.stat1 },
     { value: '600+', label: t.hero.stat2 },
-    { value: '15', label: t.hero.stat3 },
+    { value: '25', label: t.hero.stat3 },
   ]
 
   return (

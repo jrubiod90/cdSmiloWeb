@@ -25,6 +25,7 @@ export function SiteHeader() {
     { href: '/#inicio', label: t.nav.home },
     { href: '/#club', label: t.nav.club },
     { href: '/#equipos', label: t.nav.teams },
+    { href: '/#sedes', label: t.nav.venues },
     { href: '/#contacto', label: t.nav.contact },
   ]
 

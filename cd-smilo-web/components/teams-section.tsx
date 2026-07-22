@@ -6,12 +6,13 @@ import { ImageIcon, UserRound } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 import { TeamCarousel } from '@/components/team-carousel'
 import { basePath } from '@/lib/config'
-import { categories, teamsBySport, type Gender, type Sport, type Team } from '@/lib/teams'
+import { categoriesBySport, teamsBySport, type Gender, type Sport, type Team } from '@/lib/teams'
 import { cn } from '@/lib/utils'
 
 const coachImages: Record<Gender, string> = {
-  male: `${basePath}/images/coach-1.png`,
   female: `${basePath}/images/coach-2.png`,
+  male: `${basePath}/images/coach-1.png`,
+  mixed: `${basePath}/images/coach-1.png`,
 }
 
 export function TeamsSection() {
@@ -24,13 +25,17 @@ export function TeamsSection() {
     { id: 'voleibol', label: t.teams.volleyball },
   ]
 
+  const genderLabel = (gender: Gender) =>
+    gender === 'female' ? t.teams.female : gender === 'male' ? t.teams.male : t.teams.mixed
+
+  const categories = categoriesBySport[sport]
   const teams = teamsBySport(sport)
 
   const categoryName = (categoryId: string) =>
     categories.find((c) => c.id === categoryId)?.name ?? ''
 
   const carouselTitle = (team: Team) =>
-    `${categoryName(team.categoryId)} · ${team.gender === 'male' ? t.teams.male : t.teams.female} · ${
+    `${categoryName(team.categoryId)} · ${genderLabel(team.gender)} · ${
       team.sport === 'baloncesto' ? t.teams.basketball : t.teams.volleyball
     }`
 
@@ -75,7 +80,7 @@ export function TeamsSection() {
                     {category.name}
                   </h3>
                   <span className="text-sm text-muted-foreground">
-                    {lang === 'es' ? category.ageEs : category.ageEn}
+                    {lang === 'es' ? category.yearsEs : category.yearsEn}
                   </span>
                 </div>
 
@@ -85,9 +90,7 @@ export function TeamsSection() {
                       key={team.id}
                       type="button"
                       onClick={() => setActiveTeam(team)}
-                      aria-label={`${category.name} · ${
-                        team.gender === 'male' ? t.teams.male : t.teams.female
-                      } — ${t.teams.viewPhotos}`}
+                      aria-label={`${category.name} · ${genderLabel(team.gender)} — ${t.teams.viewPhotos}`}
                       className="group flex overflow-hidden rounded-xl border border-border bg-card text-left transition-colors hover:border-primary/50 focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                     >
                       <div className="relative w-28 shrink-0 overflow-hidden sm:w-32">
@@ -107,10 +110,12 @@ export function TeamsSection() {
                             'inline-flex w-fit rounded-full px-2.5 py-0.5 font-display text-[11px] font-semibold uppercase tracking-widest',
                             team.gender === 'male'
                               ? 'bg-primary/15 text-primary'
-                              : 'bg-secondary text-secondary-foreground',
+                              : team.gender === 'female'
+                                ? 'bg-secondary text-secondary-foreground'
+                                : 'bg-muted text-foreground',
                           )}
                         >
-                          {team.gender === 'male' ? t.teams.male : t.teams.female}
+                          {genderLabel(team.gender)}
                         </span>
                         <p className="mt-2 font-display text-lg font-semibold uppercase leading-tight">
                           {category.name}
@@ -118,7 +123,7 @@ export function TeamsSection() {
                         <div className="mt-2 flex items-center gap-2.5">
                           <Image
                             src={coachImages[team.gender]}
-                            alt={team.coach}
+                            alt={team.coach || t.teams.coachTbd}
                             width={32}
                             height={32}
                             className="size-8 rounded-full object-cover"
@@ -128,7 +133,7 @@ export function TeamsSection() {
                               <UserRound className="size-3" />
                               {t.teams.coach}
                             </p>
-                            <p className="text-sm font-medium">{team.coach}</p>
+                            <p className="text-sm font-medium">{team.coach || t.teams.coachTbd}</p>
                           </div>
                         </div>
                       </div>

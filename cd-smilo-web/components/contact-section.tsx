@@ -16,8 +16,8 @@ export function ContactSection() {
 
   const details = [
     { icon: MapPin, label: t.contact.addressLabel, value: t.contact.address },
-    { icon: Phone, label: t.contact.phoneLabel, value: '+34 958 123 456' },
-    { icon: Mail, label: t.contact.emailLabel, value: 'info@cdsmilo.es' },
+    { icon: Phone, label: t.contact.phoneLabel, value: t.contact.phone },
+    { icon: Mail, label: t.contact.emailLabel, value: t.contact.email },
     { icon: Clock, label: t.contact.hoursLabel, value: t.contact.hours },
   ]
 
@@ -77,7 +77,7 @@ export function ContactSection() {
         <div className="relative min-h-80 overflow-hidden rounded-2xl border border-border">
           <Image
             src={`${basePath}/images/facility.png`}
-            alt="IES Padre Suárez, Granada"
+            alt="C.D SMILO, Granada"
             fill
             className="object-cover"
           />
