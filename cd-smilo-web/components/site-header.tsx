@@ -78,7 +78,7 @@ export function SiteHeader() {
 
           <Link
             href="/inscripcion"
-            className="hidden rounded-full bg-primary px-5 py-2 font-display text-sm font-semibold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 sm:inline-block"
+            className="inline-block rounded-full bg-primary px-4 py-2 font-display text-xs font-semibold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 sm:px-5 sm:text-sm"
           >
             {t.nav.join}
           </Link>

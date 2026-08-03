@@ -48,6 +48,7 @@ const COLUMNS = [
   ['size', 'Talla'],
   ['sizeDetails', 'Tallas diferentes'],
   ['stockDetails', 'Stock'],
+  ['imageRights', 'Autorización de imagen'],
   ['consent', 'Consentimiento'],
   ['documents', 'Documentos (Drive)'],
 ]

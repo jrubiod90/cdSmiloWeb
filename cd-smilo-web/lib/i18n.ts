@@ -181,6 +181,12 @@ export const dictionary = {
       // Consentimiento
       consent:
         'He leído y acepto que el C.D Smilo trate estos datos y la documentación adjunta con el fin de gestionar la inscripción. Si el jugador/a es menor, confirmo que soy su madre, padre o tutor/a legal.',
+      // Derechos de imagen (pregunta obligatoria Sí/No)
+      imageRightsLabel: 'Autorización de imagen',
+      imageRightsText:
+        'El C.D Smilo comparte el día a día del club en sus redes sociales, web y material de difusión. ¿Autorizas que se capten y publiquen fotografías y vídeos del jugador/a en actividades del club (entrenamientos, partidos y eventos) con fines informativos y promocionales del propio club? Puedes revocar esta autorización cuando quieras escribiendo a cdsmilogranada@gmail.com.',
+      imageRightsYes: 'Sí, doy mi autorización',
+      imageRightsNo: 'No autorizo',
       // Estado / envío
       message: 'Mensaje (opcional)',
       messagePlaceholder: 'Cuéntanos tu experiencia deportiva o cualquier duda...',
@@ -395,6 +401,12 @@ export const dictionary = {
       // Consent
       consent:
         'I have read and accept that C.D SMILO processes these details and the attached documents in order to manage the registration. If the athlete is a minor, I confirm I am their parent or legal guardian.',
+      // Image rights (mandatory Yes/No question)
+      imageRightsLabel: 'Image consent',
+      imageRightsText:
+        "C.D SMILO shares the club's day-to-day life on its social media, website and promotional materials. Do you authorise photos and videos of the athlete to be taken and published during club activities (training, matches and events) for the club's own informational and promotional purposes? You can withdraw this authorisation at any time by writing to cdsmilogranada@gmail.com.",
+      imageRightsYes: 'Yes, I give my authorisation',
+      imageRightsNo: 'No, I do not authorise',
       // State / submit
       message: 'Message (optional)',
       messagePlaceholder: 'Tell us about your sporting experience or any questions...',

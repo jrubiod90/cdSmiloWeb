@@ -619,6 +619,31 @@ export function Registration() {
                 />
               </fieldset>
 
+              {/* Derechos de imagen: pregunta obligatoria Sí/No */}
+              <fieldset className="rounded-xl border border-border bg-background p-4">
+                <legend className="px-1 text-sm font-semibold">{t.join.imageRightsLabel}</legend>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t.join.imageRightsText}</p>
+                <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+                  {[
+                    { value: t.join.imageRightsYes },
+                    { value: t.join.imageRightsNo },
+                  ].map((option) => (
+                    <label key={option.value} className="flex items-center gap-2 text-sm">
+                      <input
+                        type="radio"
+                        name="imageRights"
+                        value={option.value}
+                        required
+                        onInvalid={(e) => e.currentTarget.setCustomValidity(t.join.vSelect)}
+                        onChange={(e) => e.currentTarget.setCustomValidity('')}
+                        className="size-4 shrink-0 accent-primary"
+                      />
+                      <span>{option.value}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
               {/* Consentimiento */}
               <label className="flex items-start gap-3 rounded-xl border border-border bg-background p-4 text-sm leading-relaxed">
                 <input
