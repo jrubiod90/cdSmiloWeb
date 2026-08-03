@@ -6,10 +6,22 @@ import { AlertCircle, ArrowLeft, CalendarClock, Check, ImageUp, Loader2, Send, X
 import { useLanguage } from '@/components/language-provider'
 import { registrationEndpoint, seasonOpen } from '@/lib/config'
 import { fileToUpload, submitRegistration, type UploadedFile } from '@/lib/registration-upload'
+import { categoryForYear } from '@/lib/teams'
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
 const MAX_FILE_BYTES = 10 * 1024 * 1024
+
+// Deportes del formulario: id estable (para lógica) + nombre legible (para carpeta/hoja).
+// El orden coincide con t.join.sportOptions.
+const SPORTS = [
+  { id: 'baloncesto', name: 'Baloncesto' },
+  { id: 'voleibol', name: 'Voleibol' },
+  { id: 'futbol', name: 'Fútbol' },
+] as const
+
+// Carpeta a la que van las inscripciones sin categoría por edad (fútbol, fuera de rango).
+const UNASSIGNED_CATEGORY = 'Por asignar'
 
 // Teléfono: solo dígitos, espacios, guiones y un "+" inicial; entre 9 y 20 caracteres.
 const PHONE_PATTERN = '[0-9+][0-9\\s-]{8,19}'
@@ -116,6 +128,17 @@ export function Registration() {
       return
     }
     setFormError('')
+
+    // Deporte legible + categoría deducida del año de nacimiento. El backend usa
+    // estos dos valores para anidar la carpeta: /Deporte/Categoría/Nombre — DNI.
+    const sportId = fields.sport
+    fields.sport = SPORTS.find((s) => s.id === sportId)?.name ?? sportId
+    const birthYear = parseInt((fields.birthDate ?? '').slice(0, 4), 10)
+    fields.category = UNASSIGNED_CATEGORY
+    if ((sportId === 'baloncesto' || sportId === 'voleibol') && !Number.isNaN(birthYear)) {
+      const category = categoryForYear(sportId, birthYear)
+      if (category) fields.category = category.name
+    }
 
     setStatus('submitting')
     try {
@@ -334,9 +357,9 @@ export function Registration() {
                     <option value="" disabled>
                       {t.join.selectSport}
                     </option>
-                    {t.join.sportOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
+                    {SPORTS.map((s, i) => (
+                      <option key={s.id} value={s.id}>
+                        {t.join.sportOptions[i]}
                       </option>
                     ))}
                   </select>

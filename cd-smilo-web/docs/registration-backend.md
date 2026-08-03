@@ -1,16 +1,19 @@
 # Formulario de inscripción → Google Drive
 
-El formulario de `/inscripcion` recoge los datos del jugador/a y **tres fotos**
-(foto tipo carné, DNI/pasaporte anverso y reverso). Como la web es estática
-(GitHub Pages, sin servidor), el envío lo procesa un **Google Apps Script**
-publicado como app web bajo la cuenta de Google del club.
+El formulario de `/inscripcion` recoge los datos del jugador/a, la **foto tipo
+carné** y el **documento de identidad** (DNI/pasaporte, uno o varios archivos).
+Como la web es estática (GitHub Pages, sin servidor), el envío lo procesa un
+**Google Apps Script** publicado como app web bajo tu cuenta de Google.
 
 Al enviar el formulario:
 
-1. Se crea en el Drive del club **una subcarpeta por jugador/a**
-   (`Apellidos, Nombre — deporte — fecha`) con las fotos dentro.
-2. Se añade **una fila** con todos los datos a una hoja de cálculo.
-3. (Opcional) Se envía un **email de aviso** a `cdsmilogranada@gmail.com`.
+1. Los archivos se guardan en tu Drive con esta estructura, creando los niveles
+   que falten y reutilizando los que ya existan:
+   `/Deporte/Categoría/Nombre y apellidos — DNI-Pasaporte/`.
+   La categoría se deduce del año de nacimiento; fútbol y edades fuera de rango
+   van a `Por asignar`.
+2. Se añade **una fila** con todos los datos a una hoja de cálculo (tu "Excel").
+3. Se envía un **email de aviso** a `jrubiod90@gmail.com` (configurable).
 
 Cualquiera puede rellenarlo y subir fotos **sin necesidad de cuenta de Google**.
 
@@ -18,30 +21,27 @@ Cualquiera puede rellenarlo y subir fotos **sin necesidad de cuenta de Google**.
 
 ## Puesta en marcha (una sola vez, ~5 min)
 
-Todo se hace con la cuenta de Google del club (`cdsmilogranada@gmail.com`).
+> **Importante:** el Apps Script, la hoja de cálculo y la carpeta de Drive deben
+> estar **en la misma cuenta de Google**, y debes desplegar el script iniciando
+> sesión en esa cuenta. El correo de aviso (`NOTIFY_EMAIL`) sí puede ser otro
+> distinto (p. ej. `cdsmilogranada@gmail.com`).
 
-### 1. Crear la carpeta de Drive
+### 1. Carpeta de Drive
 
-- En [drive.google.com](https://drive.google.com) crea una carpeta, p. ej.
-  **`Inscripciones 25-26`**.
-- Ábrela y copia su **ID** de la URL:
-  `https://drive.google.com/drive/folders/`**`ESTE_ES_EL_ID`**
+No hace falta crearla a mano ni copiar su ID: el script crea/usa la ruta indicada
+en `ROOT_FOLDER_PATH` dentro de tu "Mi unidad" (por defecto
+`INSCRIPCIONES 26/27 › DOCUMENTOS INSCRIPCIONES 26/27`).
 
-### 2. Crear la hoja de respuestas
+### 2. Hoja de respuestas
 
-- En [sheets.google.com](https://sheets.google.com) crea una hoja nueva, p. ej.
-  **`Inscripciones CD Smilo 25-26`**.
-- Copia su **ID** de la URL:
-  `https://docs.google.com/spreadsheets/d/`**`ESTE_ES_EL_ID`**`/edit`
+Ya está creada y su ID puesto en `SHEET_ID`. No toques sus columnas: se rellenan
+solas con la primera inscripción.
 
 ### 3. Crear el Apps Script
 
 - Ve a [script.google.com](https://script.google.com) → **Nuevo proyecto**.
-- Borra el contenido y pega el de [`apps-script/Code.gs`](apps-script/Code.gs).
-- Arriba del archivo, rellena:
-  - `ROOT_FOLDER_ID` → el ID de la carpeta del paso 1.
-  - `SHEET_ID` → el ID de la hoja del paso 2.
-  - `NOTIFY_EMAIL` → deja `cdsmilogranada@gmail.com` o pon `''` para no recibir avisos.
+- Borra el contenido y pega el de [`apps-script/Code.gs`](apps-script/Code.gs)
+  (ya trae la hoja, la ruta de carpeta y el correo rellenados).
 - Guarda (💾).
 
 ### 4. Publicar como app web

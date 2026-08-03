@@ -81,7 +81,7 @@ export const dictionary = {
     },
     join: {
       tag: 'Únete',
-      title: 'Ficha de inscripción · Temporada 25/26',
+      title: 'Ficha de inscripción · Temporada 26/27',
       subtitle:
         'Al rellenar esta ficha realizas la preinscripción al C.D Smilo. Quedará formalizada cuando adjuntes la documentación (foto tipo carné y foto del DNI o pasaporte por ambas caras). Salvo que se indique lo contrario, los datos son los del jugador/a.',
       // Secciones
@@ -295,7 +295,7 @@ export const dictionary = {
     },
     join: {
       tag: 'Join',
-      title: 'Registration form · 25/26 season',
+      title: 'Registration form · 26/27 season',
       subtitle:
         "By filling in this form you pre-register with C.D SMILO. It is confirmed once you attach the documents (passport-style photo and a photo of the ID card or passport, both sides). Unless stated otherwise, the details are the athlete's.",
       // Sections
