@@ -19,7 +19,7 @@ export function HeroSection() {
   return (
     <section id="inicio" className="relative flex min-h-screen items-center overflow-hidden">
       <Image
-        src={`${basePath}/images/hero.png`}
+        src={`${basePath}/images/hero.jpg`}
         alt=""
         fill
         priority

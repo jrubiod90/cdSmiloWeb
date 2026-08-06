@@ -9,11 +9,10 @@ Al enviar el formulario:
 
 1. Los archivos se guardan en tu Drive con esta estructura, creando los niveles
    que falten y reutilizando los que ya existan:
-   `/Deporte/Categoría/Nombre y apellidos — DNI-Pasaporte/`.
-   La categoría se deduce del año de nacimiento; fútbol y edades fuera de rango
-   van a `Por asignar`.
+   `/Deporte/Equipo/Nombre y apellidos — DNI-Pasaporte/`.
+   El "Equipo" es categoría + género (p. ej. `Senior Masculino`), deducido del año
+   de nacimiento y el sexo; fútbol y edades fuera de rango van a `Por asignar`.
 2. Se añade **una fila** con todos los datos a una hoja de cálculo (tu "Excel").
-3. Se envía un **email de aviso** a `jrubiod90@gmail.com` (configurable).
 
 Cualquiera puede rellenarlo y subir fotos **sin necesidad de cuenta de Google**.
 
@@ -23,8 +22,7 @@ Cualquiera puede rellenarlo y subir fotos **sin necesidad de cuenta de Google**.
 
 > **Importante:** el Apps Script, la hoja de cálculo y la carpeta de Drive deben
 > estar **en la misma cuenta de Google**, y debes desplegar el script iniciando
-> sesión en esa cuenta. El correo de aviso (`NOTIFY_EMAIL`) sí puede ser otro
-> distinto (p. ej. `cdsmilogranada@gmail.com`).
+> sesión en esa cuenta.
 
 ### 1. Carpeta de Drive
 
@@ -41,7 +39,7 @@ solas con la primera inscripción.
 
 - Ve a [script.google.com](https://script.google.com) → **Nuevo proyecto**.
 - Borra el contenido y pega el de [`apps-script/Code.gs`](apps-script/Code.gs)
-  (ya trae la hoja, la ruta de carpeta y el correo rellenados).
+  (ya trae la hoja y la ruta de carpeta rellenadas).
 - Guarda (💾).
 
 ### 4. Publicar como app web
@@ -103,4 +101,4 @@ Sirve para previsualizar el diseño antes de tener el backend listo.
   compartidas y borra la documentación cuando ya no sea necesaria.
 - **Detección de errores:** por cómo responden los Apps Script, la web no puede
   leer la respuesta del servidor; da el envío por bueno si no hay error de red.
-  La confirmación fiable de que todo llegó es la fila en la hoja / el email.
+  La confirmación fiable de que todo llegó es la fila en la hoja de cálculo.

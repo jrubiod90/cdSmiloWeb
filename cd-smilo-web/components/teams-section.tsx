@@ -5,15 +5,8 @@ import Image from 'next/image'
 import { ImageIcon, UserRound } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 import { TeamCarousel } from '@/components/team-carousel'
-import { basePath } from '@/lib/config'
 import { categoriesBySport, teamsBySport, type Gender, type Sport, type Team } from '@/lib/teams'
 import { cn } from '@/lib/utils'
-
-const coachImages: Record<Gender, string> = {
-  female: `${basePath}/images/coach-2.png`,
-  male: `${basePath}/images/coach-1.png`,
-  mixed: `${basePath}/images/coach-1.png`,
-}
 
 export function TeamsSection() {
   const { t, lang } = useLanguage()
@@ -35,7 +28,7 @@ export function TeamsSection() {
     categories.find((c) => c.id === categoryId)?.name ?? ''
 
   const carouselTitle = (team: Team) =>
-    `${categoryName(team.categoryId)} · ${genderLabel(team.gender)} · ${
+    `${categoryName(team.categoryId)} · ${genderLabel(team.gender)}${team.label ? ` · ${team.label}` : ''} · ${
       team.sport === 'baloncesto' ? t.teams.basketball : t.teams.volleyball
     }`
 
@@ -73,6 +66,8 @@ export function TeamsSection() {
         <div className="mt-12 space-y-12">
           {categories.map((category) => {
             const categoryTeams = teams.filter((team) => team.categoryId === category.id)
+            // No mostrar categorías sin equipos (p. ej. sin foto todavía).
+            if (categoryTeams.length === 0) return null
             return (
               <div key={category.id}>
                 <div className="mb-5 flex items-baseline gap-3 border-b border-border pb-3">
@@ -90,7 +85,7 @@ export function TeamsSection() {
                       key={team.id}
                       type="button"
                       onClick={() => setActiveTeam(team)}
-                      aria-label={`${category.name} · ${genderLabel(team.gender)} — ${t.teams.viewPhotos}`}
+                      aria-label={`${category.name} · ${genderLabel(team.gender)}${team.label ? ` · ${team.label}` : ''} — ${t.teams.viewPhotos}`}
                       className="group flex overflow-hidden rounded-xl border border-border bg-card text-left transition-colors hover:border-primary/50 focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                     >
                       <div className="relative w-28 shrink-0 overflow-hidden sm:w-32">
@@ -119,15 +114,12 @@ export function TeamsSection() {
                         </span>
                         <p className="mt-2 font-display text-lg font-semibold uppercase leading-tight">
                           {category.name}
+                          {team.label ? <span className="text-primary"> · {team.label}</span> : null}
                         </p>
                         <div className="mt-2 flex items-center gap-2.5">
-                          <Image
-                            src={coachImages[team.gender]}
-                            alt={team.coach || t.teams.coachTbd}
-                            width={32}
-                            height={32}
-                            className="size-8 rounded-full object-cover"
-                          />
+                          <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                            <UserRound className="size-4" />
+                          </div>
                           <div className="leading-tight">
                             <p className="flex items-center gap-1 text-[11px] uppercase tracking-widest text-muted-foreground">
                               <UserRound className="size-3" />

@@ -58,6 +58,8 @@ export type Team = {
   sport: Sport
   categoryId: string
   gender: Gender
+  /** Optional distinguishing name (e.g. a second team in the same category). */
+  label?: string
   /** Empty until the club confirms and announces the coach. */
   coach: string
   /** Cover image shown on the team card. */
@@ -72,21 +74,56 @@ const coaches: Record<string, string> = {
   'baloncesto-senior-male': 'Miguel Galdeano',
 }
 
-const images: Record<Sport, string> = {
-  baloncesto: `${basePath}/images/basketball.png`,
-  voleibol: `${basePath}/images/volleyball.png`,
+/**
+ * Fotos reales por equipo (archivos en `public/images/teams/`). La primera es la
+ * portada de la tarjeta; todas se muestran en la galería. Para añadir un equipo,
+ * deja sus fotos ahí nombradas `<id>-1.jpg`, `<id>-2.jpg`… y añádelo aquí.
+ * Los equipos que no estén en este mapa usan la imagen genérica del deporte.
+ */
+const teamPhotos: Record<string, string[]> = {
+  'baloncesto-benjamin-mixed': ['baloncesto-benjamin-mixed-1.jpg'],
+  'baloncesto-alevin-female': ['baloncesto-alevin-female-1.jpg'],
+  'baloncesto-alevin-male': ['baloncesto-alevin-male-1.jpg'],
+  'baloncesto-infantil-female': ['baloncesto-infantil-female-1.jpg', 'baloncesto-infantil-female-2.jpg'],
+  'baloncesto-infantil-male': [
+    'baloncesto-infantil-male-1.jpg',
+    'baloncesto-infantil-male-2.jpg',
+    'baloncesto-infantil-male-3.jpg',
+  ],
+  'baloncesto-cadete-female': ['baloncesto-cadete-female-1.jpg'],
+  'baloncesto-cadete-male': ['baloncesto-cadete-male-1.jpg'],
+  'baloncesto-junior-male': ['baloncesto-junior-male-1.jpg'],
+  'baloncesto-senior-female': ['baloncesto-senior-female-1.jpg'],
+  'baloncesto-senior-male': ['baloncesto-senior-male-1.jpg'],
+  'voleibol-cadete-female': ['voleibol-cadete-female-1.jpg'],
+  'voleibol-juvenil-female': ['voleibol-juvenil-female-1.jpg'],
+  'voleibol-senior-female': ['voleibol-senior-female-1.jpg'],
+  'voleibol-senior-male': [
+    'voleibol-senior-male-1.jpg',
+    'voleibol-senior-male-2.jpg',
+    'voleibol-senior-male-3.jpg',
+  ],
+  'baloncesto-junior-male-guevejar': ['baloncesto-junior-male-guevejar-1.jpg'],
 }
 
-/**
- * Placeholder gallery for a team.
- *
- * These reuse existing images so the carousel renders immediately. To use real
- * photos, drop files in `public/images/teams/` and return their paths here, e.g.
- *   [`${basePath}/images/teams/${sport}-${categoryId}-${gender}-1.jpg`, ...]
- */
-function buildPhotos(sport: Sport): string[] {
-  return [images[sport], `${basePath}/images/team.png`, `${basePath}/images/facility.png`]
+function photosFor(files: string[]): string[] {
+  return files.map((f) => `${basePath}/images/teams/${f}`)
 }
+
+// Equipos extra que no encajan en el patrón deporte-categoría-género (p. ej. un
+// segundo equipo dentro de una misma categoría).
+const extraTeams: Team[] = [
+  {
+    id: 'baloncesto-junior-male-guevejar',
+    sport: 'baloncesto',
+    categoryId: 'junior',
+    gender: 'male',
+    label: 'Güevéjar',
+    coach: coaches['baloncesto-junior-male-guevejar'] ?? '',
+    image: photosFor(teamPhotos['baloncesto-junior-male-guevejar'])[0],
+    photos: photosFor(teamPhotos['baloncesto-junior-male-guevejar']),
+  },
+]
 
 function buildTeams(): Team[] {
   const sports: Sport[] = ['baloncesto', 'voleibol']
@@ -96,18 +133,23 @@ function buildTeams(): Team[] {
     for (const category of categoriesBySport[sport]) {
       for (const gender of category.genders) {
         const id = `${sport}-${category.id}-${gender}`
+        const files = teamPhotos[id]
+        // Solo se muestran los equipos que tienen foto real.
+        if (!files) continue
+        const photos = photosFor(files)
         teams.push({
           id,
           sport,
           categoryId: category.id,
           gender,
           coach: coaches[id] ?? '',
-          image: images[sport],
-          photos: buildPhotos(sport),
+          image: photos[0],
+          photos,
         })
       }
     }
   }
+  teams.push(...extraTeams)
   return teams
 }
 

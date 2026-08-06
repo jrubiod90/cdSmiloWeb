@@ -25,7 +25,7 @@ export const dictionary = {
     club: {
       tag: 'El Club',
       title: 'Formando personas dentro y fuera de la pista',
-      p1: 'En el C.D Smilo creemos que el baloncesto y el voleibol son las herramientas perfectas para aprender el valor del compañerismo, el esfuerzo y el respeto. No buscamos campeonxs en la pista, sino personas que lleven los valores fuera de ella.',
+      p1: 'En el C.D. Smilo creemos que el baloncesto y el voleibol son las herramientas perfectas para aprender el valor del compañerismo, el esfuerzo y el respeto. No buscamos campeonxs en la pista, sino personas que lleven los valores fuera de ella.',
       p2: 'Llevamos 25 años formando deportistas en Granada, con equipos femeninos, masculinos y mixtos en todas las categorías, desde los 7 años hasta senior.',
       values: [
         { title: 'Esfuerzo', text: 'Damos lo mejor en cada entrenamiento y cada partido.' },
@@ -55,20 +55,20 @@ export const dictionary = {
     venues: {
       tag: 'Sedes',
       title: 'Dónde entrenamos',
-      subtitle: 'Nuestros equipos entrenan y compiten en estas instalaciones de Granada.',
+      subtitle: 'Nuestros equipos entrenan y compiten en estas instalaciones de Granada. Pulsa en cada una para verla en el mapa.',
       list: [
-        'IES Padre Suárez',
-        'IES Ángel Ganivet',
-        'IES Francisco Ayala',
-        'Col. José Hurtado',
-        'Col. Victoria Eugenia',
-        'Col. Luis Rosales',
+        { name: 'IES Padre Suárez', url: 'https://maps.app.goo.gl/aHt77nupe1eeiL1d7' },
+        { name: 'IES Ángel Ganivet', url: 'https://maps.app.goo.gl/MfVwzV9D6gLwiTGr7' },
+        { name: 'IES Francisco Ayala', url: 'https://maps.app.goo.gl/7VTTa3XFWDCTiEwaA' },
+        { name: 'Col. José Hurtado', url: 'https://maps.app.goo.gl/UcPKYqUDvZeFbZK4A' },
+        { name: 'Col. Victoria Eugenia', url: 'https://maps.app.goo.gl/HrGxr3xyZ3Sz6pRi9' },
+        { name: 'Col. Luis Rosales', url: 'https://maps.app.goo.gl/XTmMos4dVSchVP9N8' },
       ],
     },
     contact: {
       tag: 'Contacto',
-      title: 'Ponte en contacto con nosotras',
-      subtitle: 'Estamos en Granada. Ven a conocernos o escríbenos, estaremos encantadas de ayudarte.',
+      title: 'Ponte en contacto con nosotr@s',
+      subtitle: 'Estamos en Granada. Ven a conocernos o escríbenos, estaremos encantad@s de ayudarte.',
       addressLabel: 'Dirección',
       address: 'C/ Hermigua, 5, portal 3-9C, Granada',
       phoneLabel: 'Teléfono',
@@ -78,12 +78,13 @@ export const dictionary = {
       hoursLabel: 'Horario de oficina',
       hours: 'Lun – Vie: 10:30 – 12:30 y 17:00 – 19:00',
       followLabel: 'Síguenos',
+      whatsapp: 'Escríbenos por WhatsApp',
     },
     join: {
       tag: 'Únete',
       title: 'Ficha de inscripción · Temporada 26/27',
       subtitle:
-        'Al rellenar esta ficha realizas la preinscripción al C.D Smilo. Quedará formalizada cuando adjuntes la documentación (foto tipo carné y foto del DNI o pasaporte por ambas caras). Salvo que se indique lo contrario, los datos son los del jugador/a.',
+        'Al rellenar esta ficha realizas la preinscripción al C.D. Smilo. Quedará formalizada cuando adjuntes la documentación (foto tipo carné y foto del DNI o pasaporte por ambas caras). Salvo que se indique lo contrario, los datos son los del jugador/a.',
       // Secciones
       sectionPlayer: 'Datos del jugador/a',
       sectionContact: 'Contacto',
@@ -180,11 +181,11 @@ export const dictionary = {
       vInvalid: 'Revisa este campo.',
       // Consentimiento
       consent:
-        'He leído y acepto que el C.D Smilo trate estos datos y la documentación adjunta con el fin de gestionar la inscripción. Si el jugador/a es menor, confirmo que soy su madre, padre o tutor/a legal.',
+        'He leído y acepto que el C.D. Smilo trate estos datos y la documentación adjunta con el fin de gestionar la inscripción. Si el jugador/a es menor, confirmo que soy su madre, padre o tutor/a legal.',
       // Derechos de imagen (pregunta obligatoria Sí/No)
       imageRightsLabel: 'Autorización de imagen',
       imageRightsText:
-        'El C.D Smilo comparte el día a día del club en sus redes sociales, web y material de difusión. ¿Autorizas que se capten y publiquen fotografías y vídeos del jugador/a en actividades del club (entrenamientos, partidos y eventos) con fines informativos y promocionales del propio club? Puedes revocar esta autorización cuando quieras escribiendo a cdsmilogranada@gmail.com.',
+        'El C.D. Smilo comparte el día a día del club en sus redes sociales, web y material de difusión. ¿Autorizas que se capten y publiquen fotografías y vídeos del jugador/a en actividades del club (entrenamientos, partidos y eventos) con fines informativos y promocionales del propio club? Puedes revocar esta autorización cuando quieras escribiendo a cdsmilogranada@gmail.com.',
       imageRightsYes: 'Sí, doy mi autorización',
       imageRightsNo: 'No autorizo',
       // Estado / envío
@@ -245,7 +246,7 @@ export const dictionary = {
     club: {
       tag: 'The Club',
       title: 'Building people on and off the court',
-      p1: 'At C.D SMILO we believe basketball and volleyball are the perfect tools to learn the value of teamwork, effort and respect. We are not looking for champions on the court, but people who carry these values off it.',
+      p1: 'At C.D. SMILO we believe basketball and volleyball are the perfect tools to learn the value of teamwork, effort and respect. We are not looking for champions on the court, but people who carry these values off it.',
       p2: "We've spent 25 years training athletes in Granada, with women's, men's and mixed teams in every category, from age 7 to senior.",
       values: [
         { title: 'Effort', text: 'We give our best in every training session and every game.' },
@@ -275,14 +276,14 @@ export const dictionary = {
     venues: {
       tag: 'Venues',
       title: 'Where we train',
-      subtitle: 'Our teams train and compete at these facilities across Granada.',
+      subtitle: 'Our teams train and compete at these facilities across Granada. Tap any of them to see it on the map.',
       list: [
-        'IES Padre Suárez',
-        'IES Ángel Ganivet',
-        'IES Francisco Ayala',
-        'Col. José Hurtado',
-        'Col. Victoria Eugenia',
-        'Col. Luis Rosales',
+        { name: 'IES Padre Suárez', url: 'https://maps.app.goo.gl/aHt77nupe1eeiL1d7' },
+        { name: 'IES Ángel Ganivet', url: 'https://maps.app.goo.gl/MfVwzV9D6gLwiTGr7' },
+        { name: 'IES Francisco Ayala', url: 'https://maps.app.goo.gl/7VTTa3XFWDCTiEwaA' },
+        { name: 'Col. José Hurtado', url: 'https://maps.app.goo.gl/UcPKYqUDvZeFbZK4A' },
+        { name: 'Col. Victoria Eugenia', url: 'https://maps.app.goo.gl/HrGxr3xyZ3Sz6pRi9' },
+        { name: 'Col. Luis Rosales', url: 'https://maps.app.goo.gl/XTmMos4dVSchVP9N8' },
       ],
     },
     contact: {
@@ -298,12 +299,13 @@ export const dictionary = {
       hoursLabel: 'Office hours',
       hours: 'Mon – Fri: 10:30 AM – 12:30 PM & 5:00 PM – 7:00 PM',
       followLabel: 'Follow us',
+      whatsapp: 'Message us on WhatsApp',
     },
     join: {
       tag: 'Join',
       title: 'Registration form · 26/27 season',
       subtitle:
-        "By filling in this form you pre-register with C.D SMILO. It is confirmed once you attach the documents (passport-style photo and a photo of the ID card or passport, both sides). Unless stated otherwise, the details are the athlete's.",
+        "By filling in this form you pre-register with C.D. SMILO. It is confirmed once you attach the documents (passport-style photo and a photo of the ID card or passport, both sides). Unless stated otherwise, the details are the athlete's.",
       // Sections
       sectionPlayer: "Athlete's details",
       sectionContact: 'Contact',
@@ -400,11 +402,11 @@ export const dictionary = {
       vInvalid: 'Please check this field.',
       // Consent
       consent:
-        'I have read and accept that C.D SMILO processes these details and the attached documents in order to manage the registration. If the athlete is a minor, I confirm I am their parent or legal guardian.',
+        'I have read and accept that C.D. SMILO processes these details and the attached documents in order to manage the registration. If the athlete is a minor, I confirm I am their parent or legal guardian.',
       // Image rights (mandatory Yes/No question)
       imageRightsLabel: 'Image consent',
       imageRightsText:
-        "C.D SMILO shares the club's day-to-day life on its social media, website and promotional materials. Do you authorise photos and videos of the athlete to be taken and published during club activities (training, matches and events) for the club's own informational and promotional purposes? You can withdraw this authorisation at any time by writing to cdsmilogranada@gmail.com.",
+        "C.D. SMILO shares the club's day-to-day life on its social media, website and promotional materials. Do you authorise photos and videos of the athlete to be taken and published during club activities (training, matches and events) for the club's own informational and promotional purposes? You can withdraw this authorisation at any time by writing to cdsmilogranada@gmail.com.",
       imageRightsYes: 'Yes, I give my authorisation',
       imageRightsNo: 'No, I do not authorise',
       // State / submit

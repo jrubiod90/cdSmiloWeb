@@ -129,16 +129,23 @@ export function Registration() {
     }
     setFormError('')
 
-    // Deporte legible + categoría deducida del año de nacimiento. El backend usa
-    // estos dos valores para anidar la carpeta: /Deporte/Categoría/Nombre — DNI.
+    // Deporte legible + equipo deducido (categoría por año + género según el sexo).
+    // El backend usa deporte y equipo para anidar la carpeta y como columnas:
+    //   /Deporte/Equipo/Nombre — DNI   (p. ej. /Baloncesto/Senior Masculino/…)
     const sportId = fields.sport
     fields.sport = SPORTS.find((s) => s.id === sportId)?.name ?? sportId
     const birthYear = parseInt((fields.birthDate ?? '').slice(0, 4), 10)
-    fields.category = UNASSIGNED_CATEGORY
+    let categoryName = ''
     if ((sportId === 'baloncesto' || sportId === 'voleibol') && !Number.isNaN(birthYear)) {
       const category = categoryForYear(sportId, birthYear)
-      if (category) fields.category = category.name
+      if (category) categoryName = category.name
     }
+    const genderWord =
+      fields.sex === 'Mujer' ? 'Femenino' : fields.sex === 'Hombre' ? 'Masculino' : ''
+    // "Equipo" = categoría + género, p. ej. "Senior Masculino", "Cadete Femenino".
+    fields.category = categoryName
+      ? [categoryName, genderWord].filter(Boolean).join(' ')
+      : UNASSIGNED_CATEGORY
 
     setStatus('submitting')
     try {
@@ -155,7 +162,14 @@ export function Registration() {
       }
 
       if (registrationEndpoint) {
-        await submitRegistration(registrationEndpoint, payload)
+        // El Apps Script guarda los datos al principio, pero tarda en devolver la
+        // respuesta (email de aviso + redirección interna). Como con mode:'no-cors'
+        // esa respuesta no se puede leer igualmente, no bloqueamos más de unos
+        // segundos: si no ha resuelto, damos por enviado (los datos ya se guardaron).
+        // La petición sigue completándose en segundo plano.
+        const send = submitRegistration(registrationEndpoint, payload)
+        send.catch(() => {}) // evita "unhandled rejection" si resuelve tarde con error
+        await Promise.race([send, new Promise((resolve) => setTimeout(resolve, 4000))])
       } else {
         // Demo mode: no endpoint configured yet (see lib/config.ts).
         await new Promise((resolve) => setTimeout(resolve, 600))
@@ -772,13 +786,15 @@ function SingleFileField({
       </p>
       <label
         className={
-          'flex cursor-pointer flex-col items-center gap-2 rounded-xl border border-dashed bg-background px-4 py-6 text-center transition-colors hover:border-primary/60 ' +
+          'flex w-full cursor-pointer flex-col items-center gap-2 rounded-xl border border-dashed bg-background px-4 py-5 text-center transition-colors hover:border-primary/60 ' +
           (invalid ? 'border-destructive/60' : 'border-input')
         }
       >
-        <ImageUp className={'size-7 ' + (file ? 'text-primary' : 'text-muted-foreground')} />
-        <span className="text-sm font-medium text-foreground">{file ? file.name : chooseLabel}</span>
-        <span className={'text-[11px] ' + (showError ? 'text-destructive' : 'text-muted-foreground/70')}>
+        <ImageUp className={'size-6 shrink-0 ' + (file ? 'text-primary' : 'text-muted-foreground')} />
+        <span className="w-full truncate text-sm font-medium text-foreground">
+          {file ? file.name : chooseLabel}
+        </span>
+        <span className={'w-full text-[11px] leading-snug ' + (showError ? 'text-destructive' : 'text-muted-foreground/70')}>
           {file ? changeLabel : showError || hint}
         </span>
         <input type="file" accept={accept} className="sr-only" onChange={handleChange} />
@@ -840,7 +856,7 @@ function MultiFileField({
               key={`${file.name}-${index}`}
               className="flex items-center justify-between gap-3 rounded-lg border border-border bg-background px-3 py-2 text-sm"
             >
-              <span className="truncate">{file.name}</span>
+              <span className="min-w-0 flex-1 truncate">{file.name}</span>
               <button
                 type="button"
                 onClick={() => onChange(files.filter((_, i) => i !== index))}
@@ -855,13 +871,13 @@ function MultiFileField({
       )}
       <label
         className={
-          'flex cursor-pointer flex-col items-center gap-2 rounded-xl border border-dashed bg-background px-4 py-6 text-center transition-colors hover:border-primary/60 ' +
+          'flex w-full cursor-pointer flex-col items-center gap-2 rounded-xl border border-dashed bg-background px-4 py-5 text-center transition-colors hover:border-primary/60 ' +
           (invalid ? 'border-destructive/60' : 'border-input')
         }
       >
-        <ImageUp className={'size-7 ' + (files.length ? 'text-primary' : 'text-muted-foreground')} />
-        <span className="text-sm font-medium text-foreground">{addLabel}</span>
-        <span className={'text-[11px] ' + (showError ? 'text-destructive' : 'text-muted-foreground/70')}>
+        <ImageUp className={'size-6 shrink-0 ' + (files.length ? 'text-primary' : 'text-muted-foreground')} />
+        <span className="w-full truncate text-sm font-medium text-foreground">{addLabel}</span>
+        <span className={'w-full text-[11px] leading-snug ' + (showError ? 'text-destructive' : 'text-muted-foreground/70')}>
           {showError || hint}
         </span>
         <input type="file" accept={accept} multiple className="sr-only" onChange={handleChange} />

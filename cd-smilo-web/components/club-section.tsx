@@ -16,8 +16,8 @@ export function ClubSection() {
         <div className="relative">
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
             <Image
-              src={`${basePath}/images/team.png`}
-              alt="Equipo del C.D SMILO"
+              src={`${basePath}/images/team.jpg`}
+              alt="Equipo del C.D. SMILO"
               fill
               className="object-cover"
             />

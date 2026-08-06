@@ -1,6 +1,6 @@
 'use client'
 
-import { Building2 } from 'lucide-react'
+import { Building2, MapPin } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 
 export function VenuesSection() {
@@ -20,14 +20,19 @@ export function VenuesSection() {
 
       <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {t.venues.list.map((venue) => (
-          <li
-            key={venue}
-            className="flex items-center gap-3 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50"
-          >
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
-              <Building2 className="size-5" />
-            </div>
-            <span className="font-medium">{venue}</span>
+          <li key={venue.name}>
+            <a
+              href={venue.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex h-full items-center gap-3 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50 focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            >
+              <div className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                <Building2 className="size-5" />
+              </div>
+              <span className="flex-1 font-medium">{venue.name}</span>
+              <MapPin className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+            </a>
           </li>
         ))}
       </ul>

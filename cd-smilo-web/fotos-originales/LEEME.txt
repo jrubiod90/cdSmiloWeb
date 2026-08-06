@@ -1,0 +1,46 @@
+CÓMO AÑADIR LAS FOTOS DE LOS EQUIPOS
+====================================
+
+1) Copia aquí (en esta carpeta) las fotos de los equipos.
+
+2) Nombra cada archivo con el "id" del equipo de la lista de abajo.
+   - Formatos válidos: .jpg  .jpeg  .png  .webp
+   - Una sola foto por equipo:   baloncesto-cadete-female.jpg
+   - Varias fotos por equipo:    baloncesto-cadete-female-1.jpg
+                                 baloncesto-cadete-female-2.jpg
+                                 baloncesto-cadete-female-3.jpg
+     (la -1 se usa como portada de la tarjeta; el resto salen en la galería)
+
+3) Avisa a Jorge/Claude y se conectan automáticamente. Los equipos sin foto
+   siguen mostrando la imagen genérica, no pasa nada por dejarlos sin foto.
+
+
+LISTA DE EQUIPOS (nombre exacto del archivo, sin la extensión)
+--------------------------------------------------------------
+
+BALONCESTO
+  baloncesto-benjamin-mixed      → Benjamín mixto
+  baloncesto-alevin-female       → Alevín femenino
+  baloncesto-alevin-male         → Alevín masculino
+  baloncesto-infantil-female     → Infantil femenino
+  baloncesto-infantil-male       → Infantil masculino
+  baloncesto-cadete-female       → Cadete femenino
+  baloncesto-cadete-male         → Cadete masculino
+  baloncesto-junior-female       → Junior femenino
+  baloncesto-junior-male         → Junior masculino
+  baloncesto-senior-female       → Senior femenino
+  baloncesto-senior-male         → Senior masculino
+
+VOLEIBOL
+  voleibol-infantil-female       → Infantil femenino
+  voleibol-cadete-female         → Cadete femenino
+  voleibol-cadete-mixed          → Cadete mixto
+  voleibol-juvenil-female        → Juvenil femenino
+  voleibol-juvenil-mixed         → Juvenil mixto
+  voleibol-senior-female         → Senior femenino
+  voleibol-senior-male           → Senior masculino
+
+Ejemplos:
+  voleibol-senior-female.jpg
+  baloncesto-benjamin-mixed-1.jpg
+  baloncesto-benjamin-mixed-2.png

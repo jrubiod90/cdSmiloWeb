@@ -42,13 +42,13 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image
             src={`${basePath}/images/crest.png`}
-            alt="Escudo C.D SMILO"
+            alt="Escudo C.D. SMILO"
             width={44}
             height={44}
             className="h-11 w-11 object-contain"
           />
           <span className="font-display text-xl font-bold uppercase leading-none tracking-wide">
-            C.D SMILO
+            C.D. SMILO
           </span>
         </Link>
 

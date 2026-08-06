@@ -17,7 +17,7 @@ const oswald = Oswald({
 })
 
 export const metadata: Metadata = {
-  title: 'C.D SMILO — Club Deportivo · Granada',
+  title: 'C.D. SMILO — Club Deportivo · Granada',
   description:
     'Club Deportivo SMILO en Granada. Baloncesto y voleibol para todas las edades, desde los 7 años hasta senior. Únete a nuestra familia deportiva.',
   generator: 'v0.app',

@@ -3,7 +3,7 @@
  * ---------------------------------------------------------
  * Recibe el formulario de /inscripcion de la web, guarda las fotos en una
  * carpeta del Drive del club (una subcarpeta por jugador/a) y añade una fila
- * con todos los datos a una hoja de cálculo. Opcionalmente avisa por email.
+ * con todos los datos a una hoja de cálculo.
  *
  * Cómo desplegarlo: ver docs/registration-backend.md
  */
@@ -16,9 +16,6 @@ const ROOT_FOLDER_PATH = ['Inscripciones 26/27', 'DOCUMENTOS INSCRIPCIONES 26/27
 // 2) ID de la hoja de cálculo de respuestas.
 //    (lo copias de la URL de la hoja: .../spreadsheets/d/ESTE_ID/edit)
 const SHEET_ID = '1NJR5Dmx_6afpO2uOI1cd0lsRNrmSV2ylUx_qIgb1e_g'
-
-// 3) Email al que avisar de cada inscripción nueva. Deja '' para no avisar.
-const NOTIFY_EMAIL = 'cdsmilogranada@gmail.com'
 
 const TIMEZONE = 'Europe/Madrid'
 
@@ -37,7 +34,7 @@ const COLUMNS = [
   ['address', 'Domicilio'],
   ['school', 'Centro de estudios'],
   ['sport', 'Deporte'],
-  ['category', 'Categoría'],
+  ['category', 'Equipo'],
   ['compete', '¿Compite?'],
   ['previousTeam', 'Equipo de procedencia'],
   ['otherInfo', 'Otros datos'],
@@ -63,15 +60,16 @@ function doPost(e) {
     const fields = body.fields || {}
     const files = body.files || []
 
-    // Estructura: <ruta base>/Deporte/Categoría/"Nombre y apellidos — DNI/Pasaporte".
-    // Cada nivel se reutiliza si ya existe (no se duplican carpetas).
+    // Estructura: <ruta base>/Deporte/Equipo/"Nombre y apellidos — DNI/Pasaporte".
+    // El "Equipo" incluye el género (p. ej. "Senior Masculino"), así se separan
+    // femenino y masculino. Cada nivel se reutiliza si ya existe (no se duplica).
     const root = resolveRootFolder()
     const stamp = Utilities.formatDate(new Date(), TIMEZONE, 'yyyy-MM-dd HH:mm')
     const safeName = String(fields.fullName || 'Sin nombre').replace(/[\\/:*?"<>|]+/g, ' ').trim()
     const safeDni = String(fields.dni || 'sin-documento').replace(/[\\/:*?"<>|]+/g, ' ').trim()
     const sportFolder = getOrCreateFolder(root, cleanName(fields.sport, 'Sin deporte'))
-    const categoryFolder = getOrCreateFolder(sportFolder, cleanName(fields.category, 'Por asignar'))
-    const folder = getOrCreateFolder(categoryFolder, safeName + ' — ' + safeDni)
+    const teamFolder = getOrCreateFolder(sportFolder, cleanName(fields.category, 'Por asignar'))
+    const folder = getOrCreateFolder(teamFolder, safeName + ' — ' + safeDni)
 
     const links = []
     for (const file of files) {
@@ -95,19 +93,6 @@ function doPost(e) {
       return fields[key] || ''
     })
     sheet.appendRow(row)
-
-    if (NOTIFY_EMAIL) {
-      const subject = 'Nueva inscripción: ' + (fields.fullName || 'Sin nombre')
-      const lines = COLUMNS.filter(function (col) {
-        return col[0] !== 'documents'
-      }).map(function (col) {
-        const key = col[0]
-        const value = key === 'submittedAt' ? stamp : fields[key] || ''
-        return col[1] + ': ' + value
-      })
-      lines.push('', 'Carpeta en Drive: ' + folder.getUrl())
-      MailApp.sendEmail(NOTIFY_EMAIL, subject, lines.join('\n'))
-    }
 
     return jsonOutput({ ok: true })
   } catch (err) {

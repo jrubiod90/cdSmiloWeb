@@ -20,25 +20,23 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-3">
-          <div>
-            <div className="flex items-center gap-3">
-              <Image
-                src={`${basePath}/images/crest.png`}
-                alt="Escudo C.D SMILO"
-                width={48}
-                height={48}
-                className="h-12 w-12 object-contain"
-              />
-              <span className="font-display text-2xl font-bold uppercase tracking-wide">
-                C.D SMILO
-              </span>
-            </div>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              {t.footer.tagline}
-            </p>
-          </div>
+        <div className="flex flex-col items-center border-b border-border pb-12 text-center">
+          <Image
+            src={`${basePath}/images/crest.png`}
+            alt="Escudo C.D. SMILO"
+            width={200}
+            height={200}
+            className="h-32 w-32 object-contain sm:h-40 sm:w-40"
+          />
+          <span className="mt-4 font-display text-3xl font-bold uppercase tracking-wide sm:text-4xl">
+            C.D. SMILO
+          </span>
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
+            {t.footer.tagline}
+          </p>
+        </div>
 
+        <div className="grid gap-10 pt-12 sm:grid-cols-2">
           <div>
             <h3 className="font-display text-sm font-semibold uppercase tracking-widest text-primary">
               {t.footer.nav}
@@ -70,7 +68,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 border-t border-border pt-6 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} C.D SMILO. {t.footer.rights}
+          © {new Date().getFullYear()} C.D. SMILO. {t.footer.rights}
         </div>
       </div>
     </footer>
